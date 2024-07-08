@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animación</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+        }
+        #animation {
+            width: 100%;
+            max-width: 800px; /* Ajusta el tamaño máximo según tus necesidades */
+            overflow: hidden;
+        }
+        img {
+            width: 100%;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="animation">
+        <!-- Aquí se cargarán las imágenes -->
+    </div>
+
+    <script>
+        const numImages = 1500; // Número total de imágenes
+        const animationContainer = document.getElementById('animation');
+
+        for (let i = 0; i < numImages; i++) {
+            const img = document.createElement('img');
+            img.src = `imagen/imagen${i.toString().padStart(4, '0')}.jpg`;
+            animationContainer.appendChild(img);
+        }
+
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('#animation img');
+
+        function showNextImage() {
+            images[currentImageIndex].style.display = 'none';
+            currentImageIndex = (currentImageIndex + 1) % numImages;
+            images[currentImageIndex].style.display = 'block';
+        }
+
+        images[0].style.display = 'block';
+        setInterval(showNextImage, 100); // Cambia el intervalo según sea necesario (100 ms aquí)
+    </script>
+</body>
+</html>
